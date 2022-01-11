@@ -1,0 +1,47 @@
+DEBUG:h5py._conv:Creating converter from 3 to 5
+ERROR:root:process_bulnobulb: 
+Traceback (most recent call last):
+  File "c:\Users\pc\Documents\Tese\Generate OB Masks\OB_masks_FastAPI\ob_masks_deploy.py", line 87, in process_bulnobulb
+    if scan_has_bulb[0] >0.2:
+ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+ERROR:root:generate_BB_scan: 
+Traceback (most recent call last):
+  File "c:\Users\pc\Documents\Tese\Generate OB Masks\OB_masks_FastAPI\ob_masks_deploy.py", line 106, in generate_BB_scan
+    si,sf = process_bulnobulb(model_c, scan)
+TypeError: cannot unpack non-iterable NoneType object
+ERROR:root:load_models: 
+Traceback (most recent call last):
+  File "c:\Users\pc\Documents\Tese\Generate OB Masks\OB_masks_FastAPI\ob_masks_deploy.py", line 216, in load_models
+    scan_BB, coord_BB = generate_BB_scan(model_c,model_r,np_original_all_scan)
+TypeError: cannot unpack non-iterable NoneType object
+ERROR:root:process_bulnobulb: 
+Traceback (most recent call last):
+  File "c:\Users\pc\Documents\Tese\Generate OB Masks\OB_masks_FastAPI\ob_masks_deploy.py", line 86, in process_bulnobulb
+    scan_has_bulb = model_c.predict(im2)
+AttributeError: 'str' object has no attribute 'predict'
+ERROR:root:generate_BB_scan: 
+Traceback (most recent call last):
+  File "c:\Users\pc\Documents\Tese\Generate OB Masks\OB_masks_FastAPI\ob_masks_deploy.py", line 106, in generate_BB_scan
+    si,sf = process_bulnobulb(model_c, scan)
+TypeError: cannot unpack non-iterable NoneType object
+ERROR:root:run: 
+Traceback (most recent call last):
+  File "c:\Users\pc\Documents\Tese\Generate OB Masks\OB_masks_FastAPI\ob_masks_deploy.py", line 226, in run
+    scan_BB, coord_BB = generate_BB_scan(model_c,model_r,np_original_all_scan)
+TypeError: cannot unpack non-iterable NoneType object
+DEBUG:h5py._conv:Creating converter from 3 to 5
+ERROR:root:process_bulnobulb: 
+Traceback (most recent call last):
+  File "c:\Users\pc\Documents\Tese\Generate OB Masks\OB_masks_FastAPI\ob_masks_deploy.py", line 87, in process_bulnobulb
+    if scan_has_bulb[0] >0.2:
+ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+ERROR:root:generate_BB_scan: 
+Traceback (most recent call last):
+  File "c:\Users\pc\Documents\Tese\Generate OB Masks\OB_masks_FastAPI\ob_masks_deploy.py", line 106, in generate_BB_scan
+    si,sf = process_bulnobulb(model_c, scan)
+TypeError: cannot unpack non-iterable NoneType object
+ERROR:root:load_models: 
+Traceback (most recent call last):
+  File "c:\Users\pc\Documents\Tese\Generate OB Masks\OB_masks_FastAPI\ob_masks_deploy.py", line 216, in load_models
+    scan_BB, coord_BB = generate_BB_scan(model_c,model_r,np_original_all_scan)
+TypeError: cannot unpack non-iterable NoneType object

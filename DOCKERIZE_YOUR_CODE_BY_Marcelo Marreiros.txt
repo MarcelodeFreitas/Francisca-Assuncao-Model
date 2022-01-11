@@ -1,0 +1,90 @@
+HOW TO DOCKERIZE YOUR CODE BY Marcelo Marreiros
+
+---------------DOCKER INSTALLATION FOR WINDOWS 10-------------------
+DOWNLOAD DOCKER FOR DESKTOP
+PAGE: https://www.docker.com/products/docker-desktop
+EXE DOWNLOAD: https://desktop.docker.com/win/stable/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header
+
+INSTALL WSL FOR WINDOWS
+https://docs.microsoft.com/en-us/windows/wsl/install-win10
+
+OPEN POWERSHELL AS ADMINISTRATOR
+Step 1 - Enable the Windows Subsystem for Linux
+	dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+Step 2 - Check requirements for running WSL 2
+	To update to WSL 2, you must be running Windows 10.
+    For x64 systems: Version 1903 or higher, with Build 18362 or higher.
+    For ARM64 systems: Version 2004 or higher, with Build 19041 or higher.
+    Builds lower than 18362 do not support WSL 2.
+Step 3 - Enable Virtual Machine feature
+	dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+Step 4 - Download the Linux kernel update package
+	https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi
+
+---------------------------------------------------------------------
+
+OPTIONAL: if you are using VScode install Docker extension by microsoft for better autocomplete, etc.
+
+CREATE A Dockerfile
+- in your project directory create a new file with the name: "Dockerfile"
+
+---------------------EXAMPLE---------------------
+
+directory tree:
+
+code:
+	- deploy.py
+	- Dockerfile
+	- model.h5
+	- requirements.txt
+
+---------------Dockerfile(example)---------------
+
+FROM python:3.7.7
+
+ADD deploy.py .
+
+ADD requirements.txt .
+
+ADD model.h5 .
+
+RUN pip install -r "./requirements.txt"
+
+CMD ["python", "./deploy.py"]
+
+------------requirements.txt(example)-----------
+
+absl-py==0.13.0
+analytics-python==1.3.1
+astunparse==1.6.3
+
+
+HOW TO GET ALL DEPENDENCIES IF YOU ARE USING A VIRTUALENV
+pip freeze > requirements.txt
+
+
+DOCKER COMMANDS
+
+DOCKER BUILD IMAGE
+docker build -t image-name .
+
+DOCKER RUN IMAGE
+docker run -t -i  -p 8000:8000 image-name
+
+DOCKER SAVE IMAGE
+docker save image-name > image-name.tar    
+
+DOCKER LOAD IMAGE
+docker load --input image-name.tar
+
+
+HOW TO MAP PORTS IN A CONTAINER
+In your project you must use: server_name="0.0.0.0"
+The port inside your project can be whatever you want,
+for example: port_inside=8000
+The port outside the container is defined in the DOCKER 
+RUN IMAGE command:
+docker run -t -i  -p port_inside:port_outside image-name
+
+
+Use docker and make sure your code runs the same everywhere ;)
